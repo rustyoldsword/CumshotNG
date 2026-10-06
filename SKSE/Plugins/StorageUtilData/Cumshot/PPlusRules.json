@@ -1,0 +1,43 @@
+{
+	"_comment" :
+	[
+		"Cumshot NG - SexLab P+. Read once per game load.",
+		"The ejaculation is drawn when the actor's penis is OUTSIDE a partner (handjob, footjob,",
+		"boobjob, shaft licking, facial, grinding, or the actor is simply the one being penetrated)",
+		"and hidden when it is INSIDE one. 'internal' lists what counts as inside; set a value to 0",
+		"to spray for that interaction anyway.",
+		"  vaginal / anal    the actor penetrates a vagina / an anus",
+		"  deepthroat        the actor's penis is deep in a partner's mouth",
+		"  skullfuck         the actor penetrates a partner's head",
+		"  oral              the actor's crotch is being sucked (blowjob, 69) - 1 = hidden",
+		"  grinding          crotch grinding against a partner's body - 0 = drawn",
+		"hideWithoutData: 1 = hide the ejaculation when SexLab P+ has no real collision data for the",
+		"  scene (typically creature scenes: P+ then reports a placeholder). 0 = draw it anyway.",
+		"creatureStrict: 1 = in scenes with a creature, draw it only when SexLab P+ clearly reports a",
+		"  handjob / footjob / boobjob / shaft licking / facial; anything less clear is hidden.",
+		"animation: 1 = the penis pulses while the cum is drawn (TNG / SOS custom animation slot 0).",
+		"requireContact: 1 = only draw when the penis is actually engaged with a partner.",
+		"minOrgasmGap: seconds of real time before the same actor may ejaculate again.",
+		"log: 1 = write every decision to Data/SKSE/Plugins/Cumshot_PPlus.log.",
+		"hybridProjectiles: 1 = in Particles mode also fire invisible projectiles in time with the spurts,",
+		"  so the splash puddles and sounds of the Projectiles mode appear. Needs Cumshot - Particles Hybrid.esp."
+	],
+
+	"internal" :
+	{
+		"vaginal" : 1,
+		"anal" : 1,
+		"deepthroat" : 1,
+		"skullfuck" : 1,
+		"oral" : 1,
+		"grinding" : 0
+	},
+
+	"hideWithoutData" : 1,
+	"creatureStrict" : 1,
+	"animation" : 1,
+	"requireContact" : 0,
+	"minOrgasmGap" : 5.0,
+	"log" : 1,
+	"hybridProjectiles" : 1
+}

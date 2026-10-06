@@ -1,0 +1,7 @@
+.xmake/
+build/
+dist/
+vsxmake*/
+*.log
+__pycache__/
+scripts/*.pex
