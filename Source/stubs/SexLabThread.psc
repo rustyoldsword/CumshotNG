@@ -1,5 +1,5 @@
 ScriptName SexLabThread extends Quest
-{Build-time stub for SexLab P+ 2.18.x - see SexLabFramework.psc stub.}
+{Build-time stub for SexLab P+ 2.18.x and 2.19 - see SexLabFramework.psc stub.}
 
 int Function GetThreadID()
 EndFunction
@@ -29,4 +29,8 @@ EndFunction
 
 ; True when P+ has collision data (type-guessing) for this scene; false = placeholder / tag fallback.
 bool Function IsInteractionRegistered()
+EndFunction
+
+; SexLab P+ 2.19: native on sslThreadModel, replaces GetCurrentInteractionString (same output format).
+string Function GetInteractionStringImpl(Actor akPosition)
 EndFunction

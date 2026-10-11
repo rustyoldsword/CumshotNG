@@ -6,9 +6,10 @@ ScriptName CS2SexLabScript Extends Quest
  with it; without that pack installed every orgasm event died on a missing script and
  no cumshot was ever shown.
 
- This version asks SexLab P+ 2.18 itself what the actor is doing, through the public
- interaction (collision type-guessing) API on SexLabThread, which already falls back
- to the framework's own position tags when collision data is unavailable.}
+ This version asks SexLab P+ itself what the actor is doing, through the public
+ interaction (collision type-guessing) API, which already falls back to the framework's
+ own position tags when collision data is unavailable. Works with P+ 2.18 and 2.19: the
+ running version is checked on every call (see InterString).}
 
 
 CS2GameScript Property Main Auto
@@ -203,7 +204,7 @@ Bool Function ShowEjac(SexLabThread slScene, Actor orgasmee)
 	; "a<X>" = this actor's own body does X to a partner, "p<X>" = a partner does X to
 	; this actor (pOral = this actor's crotch is licked / sucked, pDeepthroat = this actor's
 	; penis is deep in a mouth, aDeepthroat = this actor's own mouth is the one deep-throating).
-	String flags = slScene.GetCurrentInteractionString(orgasmee)
+	String flags = InterString(slScene, orgasmee)
 	Bool registered = slScene.IsInteractionRegistered()
 	String head = ActorLabel(orgasmee) + " @ " + SceneLabel(slScene) + " [" + flags + "] reg=" + registered + " -> "
 
@@ -259,6 +260,18 @@ Bool Function IsCreatureScene(SexLabThread slScene)
 	Return False
 EndFunction
 
+; Comma-separated names of the interactions detected for akActor. SexLab P+ 2.19 removed
+; SexLabThread.GetCurrentInteractionString; its replacement is the native
+; sslThreadModel.GetInteractionStringImpl (the thread object is an sslThreadController, so the
+; call resolves by name at runtime). Names and meanings ("aVaginal" = this actor's penis is in a
+; partner's vagina, ...) are the same in both versions; only 2.18's pStimulation is gone.
+String Function InterString(SexLabThread slScene, Actor akActor)
+	If SKSE.GetPluginVersion("SexLabUtil") >= 34799616 ; 2.19.0.0
+		Return slScene.GetInteractionStringImpl(akActor)
+	EndIf
+	Return slScene.GetCurrentInteractionString(akActor)
+EndFunction
+
 Bool Function HasFlag(String csv, String name)
 	Return StringUtil.Find("," + csv + ",", "," + name + ",") >= 0
 EndFunction
@@ -272,7 +285,7 @@ Bool Function IsPlaceholderData(SexLabThread slScene)
 	EndIf
 	Int i = 0
 	While i < pos.Length
-		If slScene.GetCurrentInteractionString(pos[i]) != "pAnal"
+		If InterString(slScene, pos[i]) != "pAnal"
 			Return False
 		EndIf
 		i += 1

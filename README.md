@@ -7,6 +7,8 @@ only in the release.
 
 Mod page: https://dwemermods.com/mods/4266
 
+Version 1.2.0 works with SexLab P+ 2.18 and 2.19 (the running version is detected at run time); see `CHANGELOG.txt`.
+
 ## Contents
 
 | Path | Contents |

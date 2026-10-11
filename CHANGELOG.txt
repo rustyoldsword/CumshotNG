@@ -1,0 +1,7 @@
+Cumshot NG - SexLab P+ 1.2.0
+- Works with SexLab P+ 2.18 and 2.19. The running version is detected on every call
+  (SKSE.GetPluginVersion("SexLabUtil") >= 34799616 = 2.19.0).
+- SexLab P+ 2.19 removed GetCurrentInteractionString, so on 2.19 the 1.1.0 build saw "nothing engaged" and showed
+  the cumshot even with the penis inside. On 2.19 the interaction names now come from GetInteractionStringImpl.
+  Names and meanings are the same in both versions.
+- Only CS2SexLabScript changed (ShowEjac, IsPlaceholderData, new InterString).
